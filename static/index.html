@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator by - KARTIK SHARMA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+        #dark-mode-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        body.dark-mode {
+            background-color: #333;
+            color: #ddd;
+        }
+        .container.dark-mode {
+            background-color: #444;
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <button id="dark-mode-btn">Dark Mode</button>
+    <div class="container">
+        <h3>Password Generator</h3>
+        <div class="mb-3">
+            <label for="password-length">Length:</label>
+            <input type="number" id="password-length" value="12" min="6" max="20">
+        </div>
+        <div class="form-check">
+            <input type="checkbox" id="uppercase" checked>
+            <label for="uppercase">Include Uppercase Letters</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" id="numbers" checked>
+            <label for="numbers">Include Numbers</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" id="special" checked>
+            <label for="special">Include Special Characters</label>
+        </div>
+        <button id="generate-password" class="btn btn-primary mt-3">Generate</button>
+        <div class="result" id="password-result"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        // dark mode 
+        let darkMode = false;
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        const body = document.body;
+        const container = document.querySelector('.container');
+
+        darkModeBtn.onclick = function() {
+            darkMode = !darkMode;
+            body.classList.toggle('dark-mode', darkMode);
+            container.classList.toggle('dark-mode', darkMode);
+            darkModeBtn.textContent = darkMode ? 'Light Mode' : 'Dark Mode';
+        };
+
+        // passowrd generate fnctn
+        document.getElementById('generate-password').onclick = function() {
+            const length = document.getElementById('password-length').value;
+            const useUppercase = document.getElementById('uppercase').checked;
+            const useNumbers = document.getElementById('numbers').checked;
+            const useSpecial = document.getElementById('special').checked;
+
+            const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+            const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numbers = '0123456789';
+            const specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+            let characters = lowercase;
+            if (useUppercase) characters += uppercase;
+            if (useNumbers) characters += numbers;
+            if (useSpecial) characters += specialChars;
+
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+
+            // output password
+            document.getElementById('password-result').textContent = password;
+        };
+    </script>
+</body>
+</html>
