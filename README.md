@@ -15,7 +15,7 @@ The **Password Generator** is a simple yet powerful tool that generates strong, 
 ### **Tech Stack**  
 - **Programming Language:** Python  
 - **Frontend:** HTML, CSS  
-- **Libraries:** Random, Tkinter (for GUI)
+- **Libraries:** Random, Flask  
 
 ---
 
