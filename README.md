@@ -22,4 +22,4 @@ The **Password Generator** is a simple yet powerful tool that generates strong, 
 ### **Installation**  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/password-generator.git
+   git clone https://github.com/dev-KartikSharma/Password-Generator
